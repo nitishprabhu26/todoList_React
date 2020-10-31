@@ -14,32 +14,51 @@ class App extends React.Component {
     todos: [
       {
         id: 1,
-        title: "Title 1",
+        title: "Submit Assignment on Time",
         completed: false
       },
       {
         id: 2,
-        title: "Title 2",
+        title: "Prepare for the Test",
         completed: true
       },
       {
         id: 3,
-        title: "Title 3",
+        title: "Pay the bills",
         completed: false
       }
     ]
   };
 
-  markComplete = (id) => {
-    console.log(id)
-  }
+
+    // Toggle Complete
+    markComplete = id => {
+      // console.log(id)
+      this.setState({
+        todos: this.state.todos.map(todo => {
+          if (todo.id === id) {
+            todo.completed = !todo.completed;
+          }
+          return todo;
+        })
+      });
+    };
+
+    // Delete Todo
+    // copying everything which is already there -> using spread operator (...)
+    delTodo = id => {
+      console.log(id)
+      this.setState({
+        todos: [...this.state.todos.filter(todo => todo.id !== id)]
+      })
+    };
 
   render() {
     // console.log(this.state.todos)
     return (
       <div className="App">
         {/* Taking Todos in state , passing it to Todos component as props */}
-        <Todos todos={this.state.todos} markComplete={this.markComplete} />
+        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
       </div>
     );
 }

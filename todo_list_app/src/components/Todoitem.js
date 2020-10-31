@@ -55,6 +55,9 @@ export default class TodoItem extends Component {
                     {/* {this.props.todo.title} */}
                     {/* use this below one, instead of abpve line */}
                     {title}
+                    <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}>
+                        x
+                    </button>
                 </p>
             </div>
         )
@@ -74,3 +77,13 @@ TodoItem.propTypes = {
 
 // not needed since check line 3
 // export default TodoItem
+
+const btnStyle = {
+    background: "#ff0000",
+    color: "#fff",
+    border: "none",
+    padding: "5px 9px",
+    borderRadius: "50%",
+    cursor: "pointer",
+    float: "right",
+  };
