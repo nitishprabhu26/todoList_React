@@ -24,6 +24,22 @@ export default class TodoItem extends Component {
           };
     }
     
+    // TypeError: Cannot read property 'props' of undefined (if 'this' is not binded)-one way
+    // because its a custom method. we can use it in render and some other life cycle method because its a part of component
+    // other way is to use an arrow function
+
+    // <input type="checkbox" onChange={this.markComplete}/>{" "}
+    // markComplete(e){
+    //     console.log(this.props)
+    // }
+    // bind it
+    // <input type="checkbox" onChange={this.markComplete.bind(this)}/>{" "}
+
+    // or use an arrow function:
+    // <input type="checkbox" onChange={this.markComplete}/>{" "}
+    markComplete= (e)=>{
+        console.log(this.props)
+    }
 
     render() {
         return (
@@ -34,7 +50,7 @@ export default class TodoItem extends Component {
 
             <div style={this.getStyle()}>
                 <p>
-                    <input type="checkbox" />{" "}
+                    <input type="checkbox" onChange={this.markComplete}/>{" "}
                     {this.props.todo.title}
                 </p>
             </div>
