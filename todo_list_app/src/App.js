@@ -6,6 +6,7 @@ import AddTodo from "./components/AddTodo";
 import { v4 as uuid } from "uuid";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import About from './components/pages/About';
+import axios from 'axios';
 
 // or
 // ientationimport React, { Component } from 'react'
@@ -13,26 +14,37 @@ import About from './components/pages/About';
 // }
 
 class App extends React.Component {
+  // state = {
+  //   todos: [
+  //     {
+  //       id: uuid(),
+  //       title: "Submit Assignment on Time",
+  //       completed: false,
+  //     },
+  //     {
+  //       id: uuid(),
+  //       title: "Prepare for the Test",
+  //       completed: true,
+  //     },
+  //     {
+  //       id: uuid(),
+  //       title: "Pay the bills",
+  //       completed: false,
+  //     },
+  //   ],
+  // };
+
+  // using axios to fetch todos from jsonplaceholder
   state = {
-    todos: [
-      {
-        id: uuid(),
-        title: "Submit Assignment on Time",
-        completed: false,
-      },
-      {
-        id: uuid(),
-        title: "Prepare for the Test",
-        completed: true,
-      },
-      {
-        id: uuid(),
-        title: "Pay the bills",
-        completed: false,
-      },
-    ],
+    todos: []
   };
 
+  componentDidMount() {
+    axios
+      .get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+      .then(res => this.setState({ todos: res.data }));
+  }
+  
   // Toggle Complete
   markComplete = (id) => {
     // console.log(id)
