@@ -37,11 +37,12 @@ export default class TodoItem extends Component {
 
     // or use an arrow function:
     // <input type="checkbox" onChange={this.markComplete}/>{" "}
-    markComplete= (e)=>{
-        console.log(this.props)
-    }
+    // markComplete= (e)=>{
+    //     console.log(this.props)
+    // }
 
     render() {
+        const {id,title} = this.props.todo
         return (
             // <div style={itemStyle}></div>
             // <div style={{backgroundColor:'#f4f4f4'}}>
@@ -50,8 +51,10 @@ export default class TodoItem extends Component {
 
             <div style={this.getStyle()}>
                 <p>
-                    <input type="checkbox" onChange={this.markComplete}/>{" "}
-                    {this.props.todo.title}
+                    <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/>{" "}
+                    {/* {this.props.todo.title} */}
+                    {/* use this below one, instead of abpve line */}
+                    {title}
                 </p>
             </div>
         )

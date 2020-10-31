@@ -30,12 +30,16 @@ class App extends React.Component {
     ]
   };
 
+  markComplete = (id) => {
+    console.log(id)
+  }
+
   render() {
     // console.log(this.state.todos)
     return (
       <div className="App">
         {/* Taking Todos in state , passing it to Todos component as props */}
-        <Todos todos={this.state.todos} />
+        <Todos todos={this.state.todos} markComplete={this.markComplete} />
       </div>
     );
 }
