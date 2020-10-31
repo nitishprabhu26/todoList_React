@@ -22,8 +22,8 @@ render(){
 // PropTypes: a sort of validation for properties that a component should have. (Good practice)
 Todos.propTypes = {
     todos: PropTypes.array.isRequired,
-    // markComplete: PropTypes.func.isRequired,
-    // delTodo: PropTypes.func.isRequired,
+    markComplete: PropTypes.func.isRequired,
+    delTodo: PropTypes.func.isRequired,
   }
 
 export default Todos;

@@ -44,7 +44,7 @@ class App extends React.Component {
       .get('https://jsonplaceholder.typicode.com/todos?_limit=10')
       .then(res => this.setState({ todos: res.data }));
   }
-  
+
   // Toggle Complete
   markComplete = (id) => {
     // console.log(id)
@@ -58,23 +58,45 @@ class App extends React.Component {
     });
   };
 
+  // // Delete Todo
+  // // copying everything which is already there -> using spread operator (...)
+  // delTodo = (id) => {
+  //   // console.log(id)
+  //   this.setState({
+  //     todos: [...this.state.todos.filter((todo) => todo.id !== id)],
+  //   });
+  // };
+
+  // // Add Todo
+  // addTodo = (title) => {
+  //   const newTodo = {
+  //     id: uuid(),
+  //     title: title,
+  //     completed: false,
+  //   };
+  //   this.setState({ todos: [...this.state.todos, newTodo] });
+  // };
+  
   // Delete Todo
-  // copying everything which is already there -> using spread operator (...)
-  delTodo = (id) => {
-    // console.log(id)
-    this.setState({
-      todos: [...this.state.todos.filter((todo) => todo.id !== id)],
-    });
+  delTodo = id => {
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`).then(res =>
+      this.setState({
+        todos: [...this.state.todos.filter(todo => todo.id !== id)]
+      })
+    );
   };
 
-  // Add Todo
-  addTodo = (title) => {
-    const newTodo = {
-      id: uuid(),
-      title: title,
-      completed: false,
-    };
-    this.setState({ todos: [...this.state.todos, newTodo] });
+  // Add Todo by making POST request to JSONplaceholder - doest save to server but mimics by giving response
+  addTodo = title => {
+    axios
+      .post('https://jsonplaceholder.typicode.com/todos', {
+        title,
+        completed: false
+      })
+      .then(res => {
+        res.data.id = uuid();
+        this.setState({ todos: [...this.state.todos, res.data] });
+      });
   };
 
   render() {
