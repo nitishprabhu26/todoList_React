@@ -24,9 +24,11 @@ export default class TodoItem extends Component {
           };
     }
     
-    // TypeError: Cannot read property 'props' of undefined (if 'this' is not binded)-one way
-    // because its a custom method. we can use it in render and some other life cycle method because its a part of component
-    // other way is to use an arrow function
+    // TypeError: Cannot read property 'props' of undefined (if 'this' is not binded)
+    // option 1: bind 'this'
+    // 'this' can be used in render and some other life cycle method because its a part of component class
+    // markComplete is a custom method that we created. it doest have access to 'this'
+    // option 2: other way is to use an arrow function
 
     // <input type="checkbox" onChange={this.markComplete}/>{" "}
     // markComplete(e){
@@ -36,10 +38,10 @@ export default class TodoItem extends Component {
     // <input type="checkbox" onChange={this.markComplete.bind(this)}/>{" "}
 
     // or use an arrow function:
-    // <input type="checkbox" onChange={this.markComplete}/>{" "}
     // markComplete= (e)=>{
     //     console.log(this.props)
     // }
+    // <input type="checkbox" onChange={this.markComplete}/>{" "}
 
     render() {
         const {id,title} = this.props.todo
@@ -53,7 +55,7 @@ export default class TodoItem extends Component {
                 <p>
                     <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/>{" "}
                     {/* {this.props.todo.title} */}
-                    {/* use this below one, instead of abpve line */}
+                    {/* use this below one, instead of above line */}
                     {title}
                     <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}>
                         x
