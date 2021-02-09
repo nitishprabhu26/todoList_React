@@ -9,7 +9,7 @@ import About from './components/pages/About';
 import axios from 'axios';
 
 // or
-// ientationimport React, { Component } from 'react'
+// import React, { Component } from 'react'
 // class App extends Component {
 // }
 
@@ -51,7 +51,8 @@ class App extends React.Component {
     this.setState({
       todos: this.state.todos.map((todo) => {
         if (todo.id === id) {
-          todo.completed = !todo.completed;
+          // todo.completed = !todo.completed;
+          todo.completed = todo.completed ? false : true;
         }
         return todo;
       }),
@@ -102,6 +103,7 @@ class App extends React.Component {
   render() {
     // console.log(this.state.todos)
     return (
+      // to use Router, wrap it around everything
       <Router>
         <div className="App">
           <div className="container">
@@ -111,6 +113,7 @@ class App extends React.Component {
               exact
               path="/"
               render={props => (
+                // If we dont need div to wrap he contents. This is kind of ghost Element. doesnt show in the dom
                 <React.Fragment>
                   <AddTodo addTodo={this.addTodo} />
                   {/* Taking Todos in state , passing it to Todos component as props */}

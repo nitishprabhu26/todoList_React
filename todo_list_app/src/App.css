@@ -15,7 +15,8 @@ a {
 }
 
 .container {
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
+  padding: 0;
 }
 
 .btn {
