@@ -20,6 +20,7 @@ export default class TodoItem extends Component {
             background: "#f4f4f4",
             padding: "10px",
             borderBottom: "1px #ccc dotted",
+            display: "grid",
             textDecoration: this.props.todo.completed ? "line-through" : "none",
           };
     }
@@ -44,7 +45,7 @@ export default class TodoItem extends Component {
     // <input type="checkbox" onChange={this.markComplete}/>{" "}
 
     render() {
-        const {id,title} = this.props.todo
+        const {id,title,completed} = this.props.todo
         return (
             // <div style={itemStyle}></div>
             // <div style={{backgroundColor:'#f4f4f4'}}>
@@ -53,11 +54,11 @@ export default class TodoItem extends Component {
 
             <div style={this.getStyle()}>
                 <p>
-                    <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/>{" "}
+                    <input type="checkbox" checked={completed} onChange={this.props.markComplete.bind(this, id)} title="Mask as done/undone" />{" "}
                     {/* {this.props.todo.title} */}
                     {/* use this below one, instead of above line */}
                     {title}
-                    <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}>
+                    <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle} title="Remove from the list" >
                         x
                     </button>
                 </p>

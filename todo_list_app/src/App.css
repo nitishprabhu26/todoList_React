@@ -17,6 +17,8 @@ a {
 .container {
   /* padding: 0 1rem; */
   padding: 0;
+  position: relative;
+  min-height: 88vh;
 }
 
 .btn {
